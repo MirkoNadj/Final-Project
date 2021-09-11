@@ -1,22 +1,20 @@
 import React, {useEffect, useState} from 'react';
-
-import { getReportsData } from '../service/getData';
+import {CandidateCard} from './CandidateCard'
+import { getUserData } from '../service/getData';
 
 
 export const Home =() =>{
-    const [data, setData] = useState([])
- 
-    
+   
+    const [users, setUsers] = useState([])
   
   useEffect(() => {
-   
-   //getReportsData().then(user =>{ return(setData(user))})
-   
+    getUserData().then(users => setUsers(users))
       
   },[])
  return (
      <div className='container row home'>
-         <h1>YOU ARE ON THE MAIN PAGE</h1>
+        
+         { users.map((user) =>(<CandidateCard name={user.name} email={user.email}/>))}
      </div> 
  )
 } 

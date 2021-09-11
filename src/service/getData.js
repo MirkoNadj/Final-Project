@@ -47,3 +47,25 @@ export  function getReportsData (){
             return reports.map(user => {return({id:user.id})})
         })  
 }
+
+
+export  function getUserData (){
+    let token = sessionStorage.getItem('token')
+   console.log('token in get data',token)
+        return fetch(`${url}/api/candidates`,{
+            method: 'GET',
+            headers: {
+                'Authorization': ' Bearer ' + token,
+            },
+            
+        }).then(response=>{return (response.json())})
+        .then(reports => {
+            return reports.map(user => {return(
+                {id:user.id,
+                name:user.name,
+                birthday: user.birthday,
+                email: user.email,
+                education: user.education
+                })})
+        })  
+}
