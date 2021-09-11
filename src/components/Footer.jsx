@@ -3,8 +3,10 @@ import './Footer.css';
 
 export const Footer = () => {
     return (
-        <footer>
-            <h3> &copy; 2021 BIT</h3>
+        <footer class="footer">
+            <div class="container">
+                <span class="text-muted">&copy; 2021 BIT</span>
+            </div>
         </footer>
     )
 }
