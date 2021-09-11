@@ -1,81 +1,33 @@
-import { Button, makeStyles, TextField } from "@material-ui/core";
+//import { Button, makeStyles, TextField } from "@material-ui/core";
 import React, {useState} from "react";
 import { postData } from "../service/getData";
 
 import './Login.css'
 
-export const Login = () => {
+export const Login = ({setToken}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
-    
-      const useStyles = makeStyles((theme) => ({
-        root: {
-          "& .MuiTextField-root": {
-            margin: theme.spacing(1),
-          },
-          "& .MuiButtonBase-root": {
-            margin: theme.spacing(1),
-          },
-        },
-    }));
-      
-      const classes = useStyles();
-      
-
-    
-
 
     const loginButton= (e) =>{
         e.preventDefault()
-        postData(email,password)
-      
+        postData(email,password,setToken)      
     }
 
-   
-      
-  
-
-
     return(
-        <div className="page page-login">
-        <form
-          className={classes.root}
-          onSubmit={loginButton}
-          noValidate
-          autoComplete="off"
-          //action="//google.com"
-          style={{ minHeight: "100vh", maxWidth: "240px", margin: "80px auto" }}
-        >
-          <TextField
-            fullWidth
-            id="email"
-            label="E-Mail"
-            onChange={(e)=>setEmail(e.target.value)}
-            //value={email}
-            //error={formInfo.errEmail}
-            //helperText={formInfo.errEmail && "Invalid e-mail."}
-          />
-          <TextField
-            fullWidth
-            type="password"
-            id="password"
-            label="Password"
-            onChange={(e)=>setPassword(e.target.value)}
-            //value={password}
-           // error={formInfo.errPassword}
-           // helperText={formInfo.errPassword && "Invalid password."}
-          />
-          <Button
-            fullWidth
-            //disabled={formInfo.isSubmitting}
-            type="submit"
-            variant="contained"
-            color="primary"
-          >
-            Login
-          </Button>
-        </form>
-      </div>
+      <div className=" mt-5  d-flex justify-content-center align-items-center  ">
       
+      <form className='container row'  onSubmit={loginButton} >
+          <div class="mb-2 col-8"> 
+            <input type="email" class="form-control mb-2" onChange={(e)=>setEmail(e.target.value)} placeholder='email'/>
+  
+            <div class="mb-2">
+   
+              <input type="password" class="form-control"  placeholder='password'onChange={(e)=>setPassword(e.target.value)}/>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+        
+    </div>
     )
 }
