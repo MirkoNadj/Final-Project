@@ -8,13 +8,10 @@ export const Header = ({setToken, token}) => {
     setToken("");
   };
     return (
-      // <div className='container row header'>
-      //     <h1 className='col-3'><Link to='../home'>Interview Reports</Link></h1>
-      //     <button type="button" class="btn btn-primary"><Link to='../home'>Candidates</Link></button>
-      // </div>
+      
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a className="navbar-brand" href="#">
-          Interview Reports
+        <a className="navbar-brand" href="/">
+            Interview Reports                    
         </a>
         <ul className="navbar-nav ">
           {token.length > 10 && location.pathname !== "/" && (
@@ -35,5 +32,3 @@ export const Header = ({setToken, token}) => {
       </nav>
     );
 }
-
-

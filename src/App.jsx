@@ -8,15 +8,12 @@ import {Login} from './components/Login';
 import {Candidate} from './components/Candidate';
 
 
-
-
-
 function App() {  
   const [token, setToken] = useState(window.sessionStorage.getItem("token") !== null ? window.sessionStorage.getItem("token") : "");
 
 useEffect(() => {
   window.sessionStorage.setItem("token", token);
-  console.log('token hook' ,token)
+  //console.log('token hook' ,token)
   }, [token]);
 
 
@@ -28,7 +25,7 @@ useEffect(() => {
       <Switch>
         <Route path="/" exact>
           {token.length > 10 ? (
-            <Home />
+            <Home token={token}/>
           ) : (
             <Login setToken={setToken} token={token} />
           )}
