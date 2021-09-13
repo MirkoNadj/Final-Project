@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {useLocation} from "react-router";
 import './Candidate.css'
+import { formatDate } from "../service/utils";
 
 import { getReportsData } from "../service/getData";
 import { ReportTable } from "./ReportTable";
@@ -9,14 +10,6 @@ export const Candidate = () => {
 
   const location = useLocation();
   const candidate = location.state;
-
-  const formatDate = (bDay) => {
-    let date = new Date (bDay);
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-    return `${day}.${month}.${year}`
-  }
 
   const [data, setData] = useState([]);
 

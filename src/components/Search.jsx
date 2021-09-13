@@ -7,7 +7,7 @@ export const Search = ({ search, setSearch }) => {
         setSearch(e.target.value);
     }
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="searchbar navbar navbar-expand-lg navbar-light bg-light">
             <a className="navbar-brand" href="#">
             Candidates
             </a>

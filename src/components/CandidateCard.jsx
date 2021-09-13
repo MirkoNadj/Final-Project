@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router";
+import "./CandidateCard.css";
 
 export const CandidateCard = ({name, email, users}) => {
     const history = useHistory();
@@ -8,14 +9,14 @@ export const CandidateCard = ({name, email, users}) => {
     }
 
     return (
-      <div className="col-sm-6 col-md-3">
+      <div className="candidate col-sm-6 col-md-3">
         <div
           className="card"
           onClick={viewCandidate}
         >
           <img
             src="./default-user.jpg"
-            className="card-img-top rounded-circle mt-1 "
+            className="card-img-top rounded-circle"
             alt="candidate"
           />
           <div className="card-body">
