@@ -6,7 +6,7 @@ import { Search } from './Search';
 import './Home.css';
 
 
-export const Home =() =>{
+export const Home = ({ token, setToken }) =>{
     console.log('session 1', window.sessionStorage.getItem("token"))
     const [users, setUsers] = useState([])
     const [showLoading, setShowLoading] = useState(false);
@@ -20,14 +20,14 @@ export const Home =() =>{
     else {
       console.log('session else', window.sessionStorage.getItem("token"))
       setShowLoading(false)
-      getUserData().then(users => setUsers(users))
+      getUserData(setToken).then(users => setUsers(users))
     //setTimeout(function(){getUserData().then(users => setUsers(users))}, 0)    
     }      
   },[window.sessionStorage.getItem("token")])
 
 
   const renderLoading = () => {
-    return <Loading />;
+    return <Loading />
   }
   const renderCandidates = () => {
     return <div className="home">

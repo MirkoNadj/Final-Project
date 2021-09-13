@@ -16,7 +16,7 @@ export const ReportTable = ({report, candidateId, formatDate}) => {
     console.log('filtered reports for user',filteredReport)
 
     return (
-      <div class="reports">
+      <div className="reports">
         <table className="table">
           <thead>
             <tr>

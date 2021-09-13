@@ -25,7 +25,7 @@ useEffect(() => {
       <Switch>
         <Route path="/" exact>
           {token.length > 10 ? (
-            <Home token={token}/>
+            <Home setToken={setToken} token={token} />
           ) : (
             <Login setToken={setToken} token={token} />
           )}
@@ -33,7 +33,7 @@ useEffect(() => {
 
         {token.length > 10 && (
           <Route path="/candidate">
-            <Candidate />
+            <Candidate setToken={setToken} token={token} />
           </Route>
         )}
         <Route render={() => <Redirect to="/" />} />
