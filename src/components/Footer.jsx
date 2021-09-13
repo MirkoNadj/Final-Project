@@ -3,9 +3,9 @@ import './Footer.css';
 
 export const Footer = () => {
     return (
-        <footer class="footer">
-            <div class="container">
-                <span class="text-muted">&copy; 2021 BIT</span>
+        <footer className="footer">
+            <div className="container">
+                <span className="text-muted">&copy; 2021 BIT</span>
             </div>
         </footer>
     )
