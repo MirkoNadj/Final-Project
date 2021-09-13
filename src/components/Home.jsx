@@ -27,7 +27,7 @@ export const Home =() =>{
 
 
   const renderLoading = () => {
-    
+    return <Loading />;
   }
   const renderCandidates = () => {
     return <div className="home">
