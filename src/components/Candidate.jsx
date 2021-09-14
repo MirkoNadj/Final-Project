@@ -6,7 +6,7 @@ import { formatDate } from "../service/utils";
 import { getReportsData } from "../service/getData";
 import { ReportTable } from "./ReportTable";
 import { CandidateInfoItem } from "./CandidateInfoItem";
-export const Candidate = () => {
+export const Candidate = ({ token, setToken }) => {
 
   const location = useLocation();
   const candidate = location.state;
@@ -14,7 +14,7 @@ export const Candidate = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    getReportsData().then(user =>{ return(setData(user))})
+    getReportsData(setToken).then((user) => setData(user));
   }, []);
  console.log(data)
   return (

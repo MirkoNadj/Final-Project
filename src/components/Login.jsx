@@ -4,8 +4,8 @@ import { postData } from "../service/getData";
 import './Login.css'
 
 export const Login = ({setToken}) => {
-    const [email, setEmail] = useState('dev@dev.com'); //todo: remove predefined values for login
-    const [password, setPassword] = useState('developer'); 
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState(''); 
 
     const loginButton= (e) =>{
         e.preventDefault()
