@@ -6,6 +6,7 @@ import {Footer} from './components/Footer';
 import { Home } from './components/Home';
 import {Login} from './components/Login';
 import {Candidate} from './components/Candidate';
+import { Reports } from './components/Reports';
 
 
 function App() {  
@@ -36,7 +37,11 @@ useEffect(() => {
             <Candidate setToken={setToken} token={token} />
           </Route>
         )}
+        <Route path='/reports'>
+          <Reports/>
+        </Route>
         <Route render={() => <Redirect to="/" />} />
+        
       </Switch>
       <Footer />
     </Router>

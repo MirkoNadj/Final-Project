@@ -7,6 +7,7 @@ export const Header = ({setToken, token}) => {
   const logout = () => {
     setToken("");
   };
+  console.log(location)
     return (
       
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -28,6 +29,10 @@ export const Header = ({setToken, token}) => {
               </button>
             </li>
           )}
+           {token.length >10 && location.pathname!== '/reports' &&(<li>
+              <Link className="btn btn-light mr-2" to='/reports'>
+                Reports</Link>
+          </li>)}
         </ul>
       </nav>
     );
