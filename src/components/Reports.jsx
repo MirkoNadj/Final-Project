@@ -12,6 +12,7 @@ export const Reports = () => {
         
     }, [])
     return(
-        report.map((user)=>(<ReportItem companyName={user.companyName} candidateName={user.candidateName} iterviewDate={user.interviewDate} status={user.status}/>))
+        report.map((user)=>(<ReportItem companyName={user.companyName} candidateName={user.candidateName} iterviewDate={user.interviewDate} status={user.status}
+        report={user}/>))
     )
 }

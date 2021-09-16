@@ -1,9 +1,12 @@
 import React from "react";
 import './ReportItem.css'
-import {formatDate} from '../service/utils'
+import { formatDate } from '../service/utils'
 
-export const ReportItem = ({companyName,candidateName,iterviewDate,status}) => {
-
+export const ReportItem = ({ companyName, candidateName, iterviewDate, status, report }) => {
+    const [currentReport, setCurrentReport] = useState(false);
+    const openReport = (report) => {
+        setCurrentReport(report);
+    }
 
     return (
         <div className='report-item'>
@@ -25,6 +28,7 @@ export const ReportItem = ({companyName,candidateName,iterviewDate,status}) => {
                     <small>Status</small>
                 </div>
             </div>
+            {currentReport !== false && <Report currentReport={currentReport} setCurrentReport={setCurrentReport} />}
         </div>
 
 
