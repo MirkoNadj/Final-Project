@@ -22,9 +22,9 @@ export const postData = (user, pass, setToken) => {
       console.log(data);
       setToken(data.accessToken);
     })
-    .catch((reason) => {
+     .catch((reason) => {
       handleError(reason, setToken);
-    });
+     });
 };
 
 export function getReportsData(setToken) {
@@ -67,10 +67,10 @@ export function getReportsData(setToken) {
     });
 }
 
-export function getUserData(setToken) {
+export function getUserData(setToken, id = '') {
   let token = sessionStorage.getItem("token");
   console.log("token in get data", token);
-  return fetch(`${url}/api/candidates`, {
+  return fetch(`${url}/api/candidates/${id}`, {
       method: "GET",
       headers: {
         Authorization: " Bearer " + token,
@@ -88,6 +88,9 @@ export function getUserData(setToken) {
       return response.json();
     })
     .then((users) => {
+      console.log('beforeIF', id)
+      if (id === '') {
+      console.log('usersss', users)
       return users.map((user) => {
         return {
           id: user.id,
@@ -97,10 +100,12 @@ export function getUserData(setToken) {
           education: user.education,
         };
       });
-    })
-    .catch((reason) => {
-      handleError(reason, setToken);
-    });
+    }else {
+      return users;
+    }})
+     .catch((reason) => {
+       handleError(reason, setToken);
+     });
 }
 
 const handleError = (err, setToken) => {

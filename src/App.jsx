@@ -33,13 +33,14 @@ useEffect(() => {
         </Route>
 
         {token.length > 10 && (
-          <Route path="/candidate">
+          <Route exact path="/candidate/:id">
             <Candidate setToken={setToken} token={token} />
           </Route>
         )}
-        <Route path='/reports'>
+        {token.length > 10 && (<Route path='/reports'>
           <Reports/>
         </Route>
+        )}
         <Route render={() => <Redirect to="/" />} />
         
       </Switch>
