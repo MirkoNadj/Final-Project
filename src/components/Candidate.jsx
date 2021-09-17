@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from "react";
-import {useLocation} from "react-router";
+import {useParams} from "react-router";
 import './Candidate.css'
 import { formatDate } from "../service/utils";
 
-import { getReportsData } from "../service/getData";
+import { getReportsData, getUserData } from "../service/getData";
 import { ReportTable } from "./ReportTable";
 import { CandidateInfoItem } from "./CandidateInfoItem";
-export const Candidate = ({ token, setToken }) => {
+export const Candidate = ({setToken }) => {
 
-  const location = useLocation();
-  const candidate = location.state;
+  //const location = useLocation();
+  //const candidate = location.state;
+  const candidateId = useParams();
+  console.log('idd',candidateId.id)
+  //const history = useHistory();
+  //history.push({pathname: `/${candidate.id}`})
+
 
   const [data, setData] = useState([]);
+  const [candidate, setCandidate] = useState({});
 
   useEffect(() => {
+    getUserData(setToken, candidateId.id).then((user) => setCandidate(user));
+    //console.log('location', location)
     getReportsData(setToken).then((user) => setData(user));
   }, []);
  console.log(data)
@@ -26,7 +34,7 @@ export const Candidate = ({ token, setToken }) => {
         <div className="row">
           <div className="col-sm-12 col-md-3">
             <img
-              src="./default-user.jpg"
+              src="../default-user.jpg"
               className="candidate-image"
               alt="candidate"
             />

@@ -4,6 +4,7 @@ import { getUserData } from '../service/getData';
 import Loading from '../components/Loading'
 import { Search } from './Search';
 import './Home.css';
+import {useHistory} from 'react-router-dom'
 
 
 export const Home = ({ token, setToken }) =>{
@@ -11,6 +12,7 @@ export const Home = ({ token, setToken }) =>{
     const [users, setUsers] = useState([])
     const [showLoading, setShowLoading] = useState(false);
     const [search, setSearch] = useState('');
+    
   
   useEffect(() => {
     console.log('session if', window.sessionStorage.getItem("token"))
@@ -20,7 +22,7 @@ export const Home = ({ token, setToken }) =>{
     else {
       console.log('session else', window.sessionStorage.getItem("token"))
       setShowLoading(false)
-      getUserData(setToken).then(users => setUsers(users))
+      getUserData().then(users => setUsers(users))
     //setTimeout(function(){getUserData().then(users => setUsers(users))}, 0)    
     }      
   },[window.sessionStorage.getItem("token")])
@@ -30,6 +32,7 @@ export const Home = ({ token, setToken }) =>{
     return <Loading />
   }
   const renderCandidates = () => {
+    
     return <div className="home">
             <Search search={search} setSearch={setSearch} />
             <div className="container-fluid">
@@ -42,7 +45,9 @@ export const Home = ({ token, setToken }) =>{
                     user.email.toLowerCase().indexOf(s) !== -1
                   )
                     return (
+                      
                       <CandidateCard
+                      
                         name={user.name}
                         email={user.email}
                         key={user.id}

@@ -2,10 +2,12 @@ import React from "react";
 import { useHistory } from "react-router";
 import "./CandidateCard.css";
 
-export const CandidateCard = ({name, email, users}) => {
+export const CandidateCard = ({name, email, key, users}) => {
+  console.log('users', users)
     const history = useHistory();
     const viewCandidate = () => {
-        history.push({pathname: "/candidate", state: users});
+      console.log('users' ,users)
+        history.push({pathname: `/candidate/${users.id}`, state: users});
     }
 
     return (
