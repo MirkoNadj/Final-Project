@@ -38,7 +38,7 @@ useEffect(() => {
           </Route>
         )}
         {token.length > 10 && (<Route path='/reports'>
-          <Reports/>
+          <Reports setToken={setToken}/>
         </Route>
         )}
         <Route render={() => <Redirect to="/" />} />

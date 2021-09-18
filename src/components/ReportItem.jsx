@@ -2,12 +2,23 @@ import React, {useState} from "react";
 import './ReportItem.css'
 import { formatDate } from '../service/utils'
 import {Report} from "./Report"
+import { deleteReportsData } from "../service/getData";
 
-export const ReportItem = ({ companyName, candidateName, iterviewDate, status, report }) => {
+export const ReportItem = ({ companyName, candidateName, iterviewDate, status, id, report, setDeleteState, deleteState, setToken }) => {
     const [currentReport, setCurrentReport] = useState(false);
     const openReport = (report) => {
         setCurrentReport(report);
     }
+    const deleteReport = (id) => {
+        deleteReportsData(setToken, id).then(report=> 
+            {
+                if (report === 200) {
+                    setDeleteState(!deleteState);
+                    alert('Report deleted successfully.')
+                }
+
+            }
+        )}
 
     return (
         <div className='report-item'>
@@ -34,6 +45,12 @@ export const ReportItem = ({ companyName, candidateName, iterviewDate, status, r
                         onClick={() => openReport(report)}
                     >
                         <i className="fa fa-eye"></i>
+                    </button>
+                    <button
+                        className="btn btn-light"
+                        onClick={() => deleteReport(id)}
+                    >
+                        <i class="fas fa-minus-circle"></i>
                     </button>
                 </div>
             </div>

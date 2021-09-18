@@ -67,6 +67,35 @@ export function getReportsData(setToken) {
     });
 }
 
+//delete report
+
+export function deleteReportsData(setToken, id) {
+  let token = sessionStorage.getItem("token");
+  console.log("token in get data", token);
+  return fetch(`${url}/api/reports/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: " Bearer " + token,
+      },
+    })
+    .then((response) => {
+      if (!response.ok) {
+        let err = new Error("HTTP status code" + response.status);
+        err.status = response.status;
+        throw err;
+      }
+      return response;
+    })
+    .then((response) => {
+      return response.status;
+    })
+    .catch((reason) => {
+      handleError(reason, setToken);
+    });
+}
+
+// All users and single user data
+
 export function getUserData(setToken, id = '') {
   let token = sessionStorage.getItem("token");
   console.log("token in get data", token);
