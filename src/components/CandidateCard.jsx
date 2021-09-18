@@ -7,7 +7,7 @@ export const CandidateCard = ({name, email, key, users}) => {
     const history = useHistory();
     const viewCandidate = () => {
       console.log('users' ,users)
-        history.push({pathname: `/candidate/${users.id}`, state: users});
+        history.push({pathname: `/candidate/${users.id}`});
     }
 
     return (
