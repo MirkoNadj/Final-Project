@@ -9,16 +9,29 @@ export const Header = ({setToken, token}) => {
   };
   console.log(location)
     return (
-      
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <a className="navbar-brand" href="/">
-            Interview Reports                    
+          Interview Reports
         </a>
         <ul className="navbar-nav ">
+          {token.length > 10 && location.pathname === "/reports" && location.pathname !== "/create" && (
+            <li className="nav-item">
+              <Link className="btn btn-light mr-2" to="/create">
+                Create Report
+              </Link>
+            </li>
+          )}
           {token.length > 10 && location.pathname !== "/" && (
             <li className="nav-item">
               <Link className="btn btn-light mr-2" to="/">
                 Candidates
+              </Link>
+            </li>
+          )}
+          {token.length > 10 && location.pathname !== "/reports" && (
+            <li>
+              <Link className="btn btn-light mr-2" to="/reports">
+                Reports
               </Link>
             </li>
           )}
@@ -29,10 +42,6 @@ export const Header = ({setToken, token}) => {
               </button>
             </li>
           )}
-           {token.length >10 && location.pathname!== '/reports' &&(<li>
-              <Link className="btn btn-light mr-2" to='/reports'>
-                Reports</Link>
-          </li>)}
         </ul>
       </nav>
     );

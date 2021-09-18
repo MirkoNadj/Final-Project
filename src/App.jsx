@@ -7,6 +7,7 @@ import { Home } from './components/Home';
 import {Login} from './components/Login';
 import {Candidate} from './components/Candidate';
 import { Reports } from './components/Reports';
+import { Create} from './components/Create'
 
 
 function App() {  
@@ -37,12 +38,17 @@ useEffect(() => {
             <Candidate setToken={setToken} token={token} />
           </Route>
         )}
-        {token.length > 10 && (<Route path='/reports'>
-          <Reports setToken={setToken}/>
-        </Route>
+        {token.length > 10 && (
+          <Route path="/reports">
+            <Reports setToken={setToken} />
+          </Route>
+        )}
+        {token.length > 10 && (
+          <Route path="/create">
+            <Create setToken={setToken} token={token} />
+          </Route>
         )}
         <Route render={() => <Redirect to="/" />} />
-        
       </Switch>
       <Footer />
     </Router>
