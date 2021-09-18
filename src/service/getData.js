@@ -137,6 +137,42 @@ export function getUserData(setToken, id = '') {
      });
 }
 
+export function getCompanyData(setToken) {
+  let token = sessionStorage.getItem("token");
+  console.log("token in get data", token);
+  return fetch(`${url}/api/companies`, {
+      method: "GET",
+      headers: {
+        Authorization: " Bearer " + token,
+      },
+    })
+    .then((response) => {
+      if (!response.ok) {
+        let err = new Error("HTTP status code" + response.status);
+        err.status = response.status;
+        throw err;
+      }
+      return response;
+    })
+    .then((response) => {
+      return response.json();
+    })
+    .then((reports) => {
+      return reports.map((company) => {
+        return {
+          id: company.id,
+          name: company.name,
+
+        };
+      });
+    })
+    .catch((reason) => {
+      handleError(reason, setToken);
+    });
+}
+
+
+
 const handleError = (err, setToken) => {
   console.error(err);
   if (err?.status === 401) {

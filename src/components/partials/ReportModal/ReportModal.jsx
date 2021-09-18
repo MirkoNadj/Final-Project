@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { CandidateInfoItem } from "./CandidateInfoItem";
-import { formatDate } from "../service/utils";
+import { CandidateInfoItem } from "../../CandidateInfoItem/CandidateInfoItem";
+import { formatDate } from "../../../service/utils";
 
-export const Report = ({ currentReport, setCurrentReport }) => {
+export const ReportModal = ({ currentReport, setCurrentReport }) => {
   const closeReport = () => {
       setCurrentReport(false);
   }

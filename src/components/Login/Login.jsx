@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { postData } from "../service/getData";
+import { postData } from "../../service/getData";
 
 import './Login.css'
 

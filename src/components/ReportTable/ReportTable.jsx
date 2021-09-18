@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Report } from "./Report";
+import { ReportModal } from "../partials/ReportModal/ReportModal";
 
 
 export const ReportTable = ({report, candidateId, formatDate}) => {
@@ -46,7 +46,7 @@ export const ReportTable = ({report, candidateId, formatDate}) => {
             ))}
           </tbody>
         </table>
-        {currentReport !== false && <Report currentReport={currentReport} setCurrentReport={setCurrentReport} />}
+        {currentReport !== false && <ReportModal currentReport={currentReport} setCurrentReport={setCurrentReport} />}
       </div>
     );
 

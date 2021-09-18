@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react"
-import { getUserData } from "../../service/getData"
-import Loading from "../Loading"
-import {Search} from "../Search"
-import CandidateItem from "./CandidateItem"
+import { getUserData } from "../../../service/getData"
+import Loading from "../../partials/Loading/Loading"
+import {Search} from "../../partials/Search/Search"
+import CandidateItem from "../CandidateItem/CandidateItem"
 
 
 export const CreateStepOne = ({token, setToken, newReport, setNewReport}) => {
@@ -30,8 +30,8 @@ export const CreateStepOne = ({token, setToken, newReport, setNewReport}) => {
         
         return <div className="home">
                 <Search search={search} setSearch={setSearch} />
-                <div className="container-fluid">
-                  <div className="row candidates">
+                <div className="candidates-list container-fluid">
+                  <div className="row ">
                     {users.map((user) => {
                       const s = search.trim().toLowerCase();
                       if (

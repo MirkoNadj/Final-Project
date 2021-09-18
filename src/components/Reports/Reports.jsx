@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from "react";
-import { getReportsData } from "../service/getData";
-import { ReportItem } from "./ReportItem";
+import { getReportsData } from "../../service/getData";
+import { ReportItem } from "../ReportItem/ReportItem";
 
 
 
