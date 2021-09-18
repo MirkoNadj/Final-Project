@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import {useParams} from "react-router";
 import './Candidate.css'
-import { formatDate } from "../service/utils";
+import { formatDate } from "../../service/utils";
 
-import { getReportsData, getUserData } from "../service/getData";
-import { ReportTable } from "./ReportTable";
-import { CandidateInfoItem } from "./CandidateInfoItem";
+import { getReportsData, getUserData } from "../../service/getData";
+import { ReportTable } from "../ReportTable/ReportTable";
+import { CandidateInfoItem } from "../CandidateInfoItem/CandidateInfoItem";
 export const Candidate = ({setToken }) => {
 
   //const location = useLocation();

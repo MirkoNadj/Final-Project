@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import './ReportItem.css'
-import { formatDate } from '../service/utils'
-import {Report} from "./Report"
-import { deleteReportsData } from "../service/getData";
+import { formatDate } from "../../service/utils"
+import {ReportModal} from "../partials/ReportModal/ReportModal"
+import { deleteReportsData } from "../../service/getData";
 
 export const ReportItem = ({ companyName, candidateName, iterviewDate, status, id, report, setDeleteState, deleteState, setToken }) => {
     const [currentReport, setCurrentReport] = useState(false);
@@ -54,7 +54,7 @@ export const ReportItem = ({ companyName, candidateName, iterviewDate, status, i
                     </button>
                 </div>
             </div>
-            {currentReport !== false && <Report currentReport={currentReport} setCurrentReport={setCurrentReport} />}
+            {currentReport !== false && <ReportModal currentReport={currentReport} setCurrentReport={setCurrentReport} />}
         </div>
 
 

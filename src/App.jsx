@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import './App.css';
-import {Header} from './components/Header';
-import {Footer} from './components/Footer';
-import { Home } from './components/Home';
-import {Login} from './components/Login';
-import {Candidate} from './components/Candidate';
-import { Reports } from './components/Reports';
-import { Create} from './components/Wizard/Create'
+import {Header} from './components/partials/Header/Header';
+import {Footer} from './components/partials/Footer/Footer';
+import { Home } from './components/Home/Home';
+import {Login} from './components/Login/Login';
+import {Candidate} from './components/Candidate/Candidate';
+import { Reports } from './components/Reports/Reports';
+import { Create} from './components/Wizard/Create/Create'
 
 
 function App() {  

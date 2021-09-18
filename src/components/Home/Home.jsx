@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {CandidateCard} from './CandidateCard'
-import { getUserData } from '../service/getData';
-import Loading from '../components/Loading'
-import { Search } from './Search';
+import {CandidateCard} from '../CandidateCard/CandidateCard'
+import { getUserData } from "../../service/getData";
+import Loading from '../partials/Loading/Loading'
+import { Search } from '../partials/Search/Search';
 import './Home.css';
-import {useHistory} from 'react-router-dom'
 
 
 export const Home = ({ token, setToken }) =>{
@@ -22,7 +21,7 @@ export const Home = ({ token, setToken }) =>{
     else {
       console.log('session else', window.sessionStorage.getItem("token"))
       setShowLoading(false)
-      getUserData().then(users => setUsers(users))
+      getUserData(setToken).then(users => setUsers(users))
     //setTimeout(function(){getUserData().then(users => setUsers(users))}, 0)    
     }      
   },[window.sessionStorage.getItem("token")])
