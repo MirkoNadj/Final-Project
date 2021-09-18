@@ -7,7 +7,7 @@ import { Home } from './components/Home';
 import {Login} from './components/Login';
 import {Candidate} from './components/Candidate';
 import { Reports } from './components/Reports';
-import { Create} from './components/Create'
+import { Create} from './components/Wizard/Create'
 
 
 function App() {  
