@@ -1,4 +1,4 @@
-const url = "http://localhost:3333";
+export const url = "http://localhost:3333";
 
 export const postData = (user, pass, setToken) => {
   const data = { email: user, password: pass };
@@ -171,6 +171,39 @@ export function getCompanyData(setToken) {
     });
 }
 
+export const createNewReport = (newReport, setToken, token, setLoading) => {
+  const interviewDate = new Date(newReport.interviewDate);
+  const data = { ...newReport, interviewDate: interviewDate.toString() };
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  };
+  setLoading(true);
+  return fetch(`${url}/api/reports`, requestOptions)
+    .then((response) => {
+      if (!response.ok) {
+        let err = new Error("HTTP status code: " + response.status);
+        err.response = response;
+        err.status = response.status;
+        throw err;
+      }
+      return response;
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      setLoading(false);
+      alert("Report created successfully.");
+      return data;
+    })
+    .catch((reason) => {
+      setLoading(false);
+      handleError(reason, setToken);
+    });
+};
 
 
 const handleError = (err, setToken) => {

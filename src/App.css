@@ -5,3 +5,25 @@
 #root {
     padding-bottom: 60px;
 }
+.bg-primary {
+    background: #3F3D56 !important;
+}
+.btn-primary,
+.list-group-item.active {
+    background: #3F3D56;
+    border-color: #3F3D56;
+}
+.btn-primary:hover {
+    background: #545172;
+    border-color: #545172;
+}
+.btn-primary:not(:disabled):not(.disabled).active, 
+.btn-primary:not(:disabled):not(.disabled):active, 
+.show>.btn-primary.dropdown-toggle {
+    background: #2e2c3f;
+    border-color: #2e2c3f;
+}
+.btn-primary.disabled, .btn-primary:disabled {
+    background-color: #6a678b;
+    border-color: #6a678b;
+}

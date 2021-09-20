@@ -10,6 +10,8 @@ export const ReportItem = ({ companyName, candidateName, iterviewDate, status, i
         setCurrentReport(report);
     }
     const deleteReport = (id) => {
+        if(!window.confirm('Are you sure you want to delete report?'))
+            return false;
         deleteReportsData(setToken, id).then(report=> 
             {
                 if (report === 200) {

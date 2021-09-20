@@ -4,26 +4,68 @@ import { CreateStepTwo } from "../CreateStepTwo/CreateStepTwo";
 import { CreateStepThree } from "../CreateStepThree/CreateStepThree";
 import { useState } from "react";
 import { Candidate } from "../../../entities/candidate";
+import { createNewReport } from "../../../service/getData";
+import { useHistory } from "react-router-dom"
 
 
 export const Create = ({ setToken, token }) => {
   let inititalCandidate = new Candidate();
   const [step, setStep] = useState(1);
   const [newReport, setNewReport] = useState(inititalCandidate);
+  const [loading, setLoading] = useState(false);
 
-  const steps = ["SelectCandidate", "SelectCompany", "FillReportDetails"];
-  console.log("newReport", newReport);
+  const history = useHistory();
+
+  const steps = ["Select Candidate", "Select Company", "Fill Report Details"];
+  const statuses = ["passed", "failed"];
+  const phases = ["cv", "hr", "tech", "final"];
 
   const goNext = () => {
     if (step < 3) {
       setStep(step + 1);
+    }
+    else {
+      //create report
+      createNewReport(newReport, setToken, token, setLoading)
+      .then((data) => {
+        history.push({
+          pathname: "/reports",
+        });
+      });
     }
   };
   const goBack = () => {
     if(step > 1){
         setStep(step - 1);
     }
-}
+  }
+  const stepIsValid = () => {
+    switch (step) {
+      case 1:
+        return newReport.candidateId > 0;
+      case 2:
+        return newReport.companyId > 0;
+      case 3:
+        //validate status, make sure it's one of possible values
+        if (statuses.indexOf(newReport.status) === -1) return false;
+
+        //validate phases, make sure it's one of possible values
+        if (phases.indexOf(newReport.phase) === -1) return false;
+
+        //validate interview date
+        if (!newReport.interviewDate) return false;
+        //make sure it's valid date in the past.
+        const now = new Date();
+        now.setHours(0, 0, 0, 0);
+        const d = new Date(newReport.interviewDate);
+        if (d instanceof Date && !isNaN(d.getTime())) {
+          d.setHours(0, 0, 0, 0);
+          if (d.getTime() <= now.getTime()) return true;
+        }
+        return false;
+    }
+    return false;
+  };
   return (
     <div className="page page-create">
       <div className="container">
@@ -84,25 +126,35 @@ export const Create = ({ setToken, token }) => {
                     setNewReport={setNewReport}
                   />
                 );
-                else if(step === 3)
-                    return <CreateStepThree title={steps[step - 1]} token={token} setToken={setToken} newReport={newReport} setNewReport={setNewReport}
-                     />
+              else if (step === 3)
+                return (
+                  <CreateStepThree
+                    title={steps[step - 1]}
+                    token={token}
+                    setToken={setToken}
+                    newReport={newReport}
+                    setNewReport={setNewReport}
+                    statuses={statuses}
+                    phases={phases}
+                  />
+                );
             })()}
             <div className="step-buttons">
-                {(step > 1) &&
-              (<button
-                type="button"
-                className="btn btn-light btn-back"
-                onClick={goBack}
-                disabled={step === 1 || newReport.isLoading}
-              >
-                Back
-              </button>)}
+              {step > 1 && (
+                <button
+                  type="button"
+                  className="btn btn-light btn-back"
+                  onClick={goBack}
+                  disabled={step === 1 || loading}
+                >
+                  Back
+                </button>
+              )}
               <button
                 type="button"
                 className="btn btn-primary btn-next"
                 onClick={goNext}
-                
+                disabled={!stepIsValid() || loading}
               >
                 {step === steps.length ? "Create" : "Next"}
               </button>

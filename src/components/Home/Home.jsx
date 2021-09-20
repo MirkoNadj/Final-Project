@@ -33,7 +33,7 @@ export const Home = ({ token, setToken }) =>{
   const renderCandidates = () => {
     
     return <div className="home">
-            <Search search={search} setSearch={setSearch} />
+            <Search title={"Candidates"} search={search} setSearch={setSearch} />
             <div className="container-fluid">
               <div className="row candidates">
                 {users.map((user) => {

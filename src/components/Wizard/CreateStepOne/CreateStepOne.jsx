@@ -5,7 +5,7 @@ import {Search} from "../../partials/Search/Search"
 import CandidateItem from "../CandidateItem/CandidateItem"
 
 
-export const CreateStepOne = ({token, setToken, newReport, setNewReport}) => {
+export const CreateStepOne = ({title, token, setToken, newReport, setNewReport}) => {
     const [users, setUsers] = useState([])
     const [search, setSearch] = useState('');
     const [showLoading, setShowLoading] = useState(false);
@@ -28,32 +28,33 @@ export const CreateStepOne = ({token, setToken, newReport, setNewReport}) => {
       }
       const renderCandidates = () => {
         
-        return <div className="home">
-                <Search search={search} setSearch={setSearch} />
-                <div className="candidates-list container-fluid">
-                  <div className="row ">
-                    {users.map((user) => {
-                      const s = search.trim().toLowerCase();
-                      if (
-                        s === "" ||
-                        user.name.toLowerCase().indexOf(s) !== -1 ||
-                        user.email.toLowerCase().indexOf(s) !== -1
-                      )
-                        return (
-                          
-                          <CandidateItem
-                            selected={newReport.candidateId === user.id}
-                            selectCandidate={selectCandidate}
-                            name={user.name}
-                            email={user.email}
-                            key={user.id}
-                            candidate={user}
-                          />
-                        );
-                    })}
-                  </div>
-                </div>
+        return (
+          <div className="home">
+            <Search title={title} search={search} setSearch={setSearch} />
+            <div className="candidates-list container-fluid">
+              <div className="row ">
+                {users.map((user) => {
+                  const s = search.trim().toLowerCase();
+                  if (
+                    s === "" ||
+                    user.name.toLowerCase().indexOf(s) !== -1 ||
+                    user.email.toLowerCase().indexOf(s) !== -1
+                  )
+                    return (
+                      <CandidateItem
+                        selected={newReport.candidateId === user.id}
+                        selectCandidate={selectCandidate}
+                        name={user.name}
+                        email={user.email}
+                        key={user.id}
+                        candidate={user}
+                      />
+                    );
+                })}
+              </div>
             </div>
+          </div>
+        );
       }
       return showLoading ? renderLoading() : renderCandidates();
 }

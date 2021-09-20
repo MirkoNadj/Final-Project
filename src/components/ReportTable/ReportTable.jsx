@@ -46,7 +46,12 @@ export const ReportTable = ({report, candidateId, formatDate}) => {
             ))}
           </tbody>
         </table>
-        {currentReport !== false && <ReportModal currentReport={currentReport} setCurrentReport={setCurrentReport} />}
+        {currentReport !== false && (
+          <ReportModal
+            currentReport={currentReport}
+            setCurrentReport={setCurrentReport}
+          />
+        )}
       </div>
     );
 

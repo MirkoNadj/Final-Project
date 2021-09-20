@@ -2,7 +2,7 @@ import "./CandidateItem.css";
 
 function CandidateItem({ name, email, candidate, selected, selectCandidate }) {
     return (
-        <div className={"candidate-item " + (selected ? 'active bg-primary' : '')} onClick={() => selectCandidate(candidate)}>
+        <div className={"candidate-item col-6 " + (selected ? 'active bg-primary' : '')} onClick={() => selectCandidate(candidate)}>
             <div className="row">
                 <div className="col-3">
                     <img src="./default-user.jpg" alt="" />

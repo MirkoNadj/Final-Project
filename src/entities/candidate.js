@@ -1,11 +1,11 @@
 
 export class Candidate {
-    candidateId;
-    candidateName;
-    companyId;
-    companyName;
-    interviewDate;
-    phase;
-    status;
-    note;
+    candidateId = 0;
+    candidateName = '';
+    companyId = 0;
+    companyName = '';
+    interviewDate = '';
+    phase = '';
+    status = '';
+    note = '';
 };
