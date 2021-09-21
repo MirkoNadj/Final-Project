@@ -1,34 +1,26 @@
 import React, { useEffect, useState } from "react";
-import {useParams} from "react-router";
+import {useParams, useHistory} from "react-router";
 import './Candidate.css'
 import { formatDate } from "../../service/utils";
-
 import { getReportsData, getUserData } from "../../service/getData";
 import { ReportTable } from "../ReportTable/ReportTable";
 import { CandidateInfoItem } from "../CandidateInfoItem/CandidateInfoItem";
+
 export const Candidate = ({setToken }) => {
-
-  //const location = useLocation();
-  //const candidate = location.state;
   const candidateId = useParams();
-  console.log('idd',candidateId.id)
-  //const history = useHistory();
-  //history.push({pathname: `/${candidate.id}`})
-
-
+  const history = useHistory();
   const [data, setData] = useState([]);
   const [candidate, setCandidate] = useState({});
 
   useEffect(() => {
-    getUserData(setToken, candidateId.id).then((user) => setCandidate(user));
-    //console.log('location', location)
+    getUserData(setToken, candidateId.id, (err) => {
+      alert("Candidate not found.");
+      history.push({pathname: '/'})
+    }).then((user) => setCandidate(user));
     getReportsData(setToken).then((user) => setData(user));
-  }, []);
- console.log(data)
+  },[candidateId.id, history, setToken]);
+
   return (
-    // <div className="container row page-candidate">
-    //   <h1>YOU ARE ON THE CANDIDATE PAGE</h1>
-    // </div>
     <div className="page page-candidate" style={{ padding: "40px" }}>
       <div className="container candidate-top">
         <div className="row">

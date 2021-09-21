@@ -9,16 +9,13 @@ import {Candidate} from './components/Candidate/Candidate';
 import { Reports } from './components/Reports/Reports';
 import { Create} from './components/Wizard/Create/Create'
 
-
 function App() {  
   const [token, setToken] = useState(window.sessionStorage.getItem("token") !== null ? window.sessionStorage.getItem("token") : "");
 
 useEffect(() => {
   window.sessionStorage.setItem("token", token);
-  //console.log('token hook' ,token)
   }, [token]);
-
-
+  
   return (
     <Router>
       <div className="App">

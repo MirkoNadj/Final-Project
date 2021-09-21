@@ -13,9 +13,7 @@ export const Create = ({ setToken, token }) => {
   const [step, setStep] = useState(1);
   const [newReport, setNewReport] = useState(inititalCandidate);
   const [loading, setLoading] = useState(false);
-
   const history = useHistory();
-
   const steps = ["Select Candidate", "Select Company", "Fill Report Details"];
   const statuses = ["passed", "failed"];
   const phases = ["cv", "hr", "tech", "final"];
@@ -63,6 +61,7 @@ export const Create = ({ setToken, token }) => {
           if (d.getTime() <= now.getTime()) return true;
         }
         return false;
+        default:
     }
     return false;
   };

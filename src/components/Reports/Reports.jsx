@@ -3,8 +3,6 @@ import { getReportsData } from "../../service/getData";
 import { ReportItem } from "../ReportItem/ReportItem";
 import { Search } from "../partials/Search/Search";
 
-
-
 export const Reports = (setToken) => {
     const [report, setReport] = useState([])
     const [deleteState, setDeleteState] = useState(false);
@@ -28,17 +26,19 @@ export const Reports = (setToken) => {
               user.companyName.toLowerCase().indexOf(s) !== -1 ||
               user.candidateName.toLowerCase().indexOf(s) !== -1
             )
-              return <ReportItem
+              {return <ReportItem
+                key={user.id}
                 companyName={user.companyName}
                 candidateName={user.candidateName}
-                iterviewDate={user.interviewDate}
+                interviewDate={user.interviewDate}
                 status={user.status}
                 id={user.id}
                 setDeleteState={setDeleteState}
                 deleteState={deleteState}
                 setToken={setToken}
                 report={user}
-              />;
+              />}
+            else return null;
         })}
       </div>
     );

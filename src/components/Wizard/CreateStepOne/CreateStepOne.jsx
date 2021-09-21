@@ -4,17 +4,15 @@ import Loading from "../../partials/Loading/Loading"
 import {Search} from "../../partials/Search/Search"
 import CandidateItem from "../CandidateItem/CandidateItem"
 
-
 export const CreateStepOne = ({title, token, setToken, newReport, setNewReport}) => {
     const [users, setUsers] = useState([])
     const [search, setSearch] = useState('');
     const [showLoading, setShowLoading] = useState(false);
 
     const selectCandidate = (candidate) => {
-        console.log('candidate',candidate)
         setNewReport({...newReport, candidateId: candidate.id, candidateName: candidate.name })
     }
-
+    
     useEffect(() => {
         if (token === '') {
             setShowLoading(true)}
@@ -22,12 +20,11 @@ export const CreateStepOne = ({title, token, setToken, newReport, setNewReport})
         getUserData(setToken).then(users => setUsers(users));
         setShowLoading(false)
         }
-    },[])
+    },[token, setToken])
     const renderLoading = () => {
         return <Loading />
       }
-      const renderCandidates = () => {
-        
+      const renderCandidates = () => {        
         return (
           <div className="home">
             <Search title={title} search={search} setSearch={setSearch} />
@@ -40,7 +37,7 @@ export const CreateStepOne = ({title, token, setToken, newReport, setNewReport})
                     user.name.toLowerCase().indexOf(s) !== -1 ||
                     user.email.toLowerCase().indexOf(s) !== -1
                   )
-                    return (
+                    {return (
                       <CandidateItem
                         selected={newReport.candidateId === user.id}
                         selectCandidate={selectCandidate}
@@ -49,7 +46,8 @@ export const CreateStepOne = ({title, token, setToken, newReport, setNewReport})
                         key={user.id}
                         candidate={user}
                       />
-                    );
+                    )}
+                  else return null;
                 })}
               </div>
             </div>

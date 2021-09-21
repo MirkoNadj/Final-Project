@@ -5,26 +5,21 @@ import Loading from '../partials/Loading/Loading'
 import { Search } from '../partials/Search/Search';
 import './Home.css';
 
-
-export const Home = ({ token, setToken }) =>{
-    console.log('session 1', window.sessionStorage.getItem("token"))
+export const Home = (setToken) =>{
+    const token = window.sessionStorage.getItem("token")
     const [users, setUsers] = useState([])
     const [showLoading, setShowLoading] = useState(false);
-    const [search, setSearch] = useState('');
-    
+    const [search, setSearch] = useState('');    
   
   useEffect(() => {
-    console.log('session if', window.sessionStorage.getItem("token"))
-    if (window.sessionStorage.getItem("token") === '') {
+    if (token === '') {
       setShowLoading(true)      
     }
     else {
-      console.log('session else', window.sessionStorage.getItem("token"))
       setShowLoading(false)
       getUserData(setToken).then(users => setUsers(users))
-    //setTimeout(function(){getUserData().then(users => setUsers(users))}, 0)    
     }      
-  },[window.sessionStorage.getItem("token")])
+  },[token, setToken])
 
 
   const renderLoading = () => {
@@ -43,16 +38,15 @@ export const Home = ({ token, setToken }) =>{
                     user.name.toLowerCase().indexOf(s) !== -1 ||
                     user.email.toLowerCase().indexOf(s) !== -1
                   )
-                    return (
-                      
-                      <CandidateCard
-                      
+                    {return (                      
+                      <CandidateCard                      
                         name={user.name}
                         email={user.email}
                         key={user.id}
                         users={user}
                       />
-                    );
+                    )}
+                  else return null;
                 })}
               </div>
             </div>

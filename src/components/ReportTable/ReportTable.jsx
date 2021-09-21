@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { ReportModal } from "../partials/ReportModal/ReportModal";
 
-
 export const ReportTable = ({report, candidateId, formatDate}) => {
     const [currentReport, setCurrentReport] = useState(false);
     const openReport = (report) => {
@@ -13,8 +12,7 @@ export const ReportTable = ({report, candidateId, formatDate}) => {
              filteredReport.push(elem)
         }
     })
-    console.log('filtered reports for user',filteredReport)
-
+    
     return (
       <div className="reports">
         <table className="table">
@@ -54,6 +52,4 @@ export const ReportTable = ({report, candidateId, formatDate}) => {
         )}
       </div>
     );
-
-
 }

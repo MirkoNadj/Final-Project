@@ -7,7 +7,6 @@ export const Header = ({setToken, token}) => {
   const logout = () => {
     setToken("");
   };
-  console.log(location)
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <a className="navbar-brand" href="/">

@@ -4,7 +4,7 @@ import { formatDate } from "../../service/utils"
 import {ReportModal} from "../partials/ReportModal/ReportModal"
 import { deleteReportsData } from "../../service/getData";
 
-export const ReportItem = ({ companyName, candidateName, iterviewDate, status, id, report, setDeleteState, deleteState, setToken }) => {
+export const ReportItem = ({ companyName, candidateName, interviewDate, status, id, report, setDeleteState, deleteState, setToken }) => {
     const [currentReport, setCurrentReport] = useState(false);
     const openReport = (report) => {
         setCurrentReport(report);
@@ -18,7 +18,6 @@ export const ReportItem = ({ companyName, candidateName, iterviewDate, status, i
                     setDeleteState(!deleteState);
                     alert('Report deleted successfully.')
                 }
-
             }
         )}
 
@@ -34,8 +33,8 @@ export const ReportItem = ({ companyName, candidateName, iterviewDate, status, i
                     <small>Company</small>
                 </div>
                 <div className="col-sm-6 col-md-2">
-                    <strong>{formatDate(iterviewDate)}</strong>
-                    <small>IterviewDate </small>
+                    <strong>{formatDate(interviewDate)}</strong>
+                    <small>Interview date</small>
                 </div>
                 <div className="col-sm-6 col-md-2">
                     <strong>{status}</strong>
@@ -52,15 +51,11 @@ export const ReportItem = ({ companyName, candidateName, iterviewDate, status, i
                         className="btn btn-light"
                         onClick={() => deleteReport(id)}
                     >
-                        <i class="fas fa-minus-circle"></i>
+                        <i className="fas fa-minus-circle"></i>
                     </button>
                 </div>
             </div>
             {currentReport !== false && <ReportModal currentReport={currentReport} setCurrentReport={setCurrentReport} />}
         </div>
-
-
-
     )
-
 }

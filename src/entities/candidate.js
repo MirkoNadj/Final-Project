@@ -1,4 +1,3 @@
-
 export class Candidate {
     candidateId = 0;
     candidateName = '';

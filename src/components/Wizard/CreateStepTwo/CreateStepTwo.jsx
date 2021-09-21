@@ -4,8 +4,6 @@ import Loading from '../../partials/Loading/Loading'
 import { Search } from '../../partials/Search/Search';
 import { CompanyItem } from '../CompanyItem/CompanyItem';
 
-
-
 export const CreateStepTwo = ({title, token, setToken,newReport, setNewReport}) => {
     const [company, setCompany] = useState([])
     const [showLoading, setShowLoading] = useState(false);
@@ -14,7 +12,7 @@ export const CreateStepTwo = ({title, token, setToken,newReport, setNewReport}) 
     const selectCompany= (company) =>{
         setNewReport({...newReport, companyId: company.id, companyName: company.name })
     }
-    console.log('company',company)
+
     useEffect(() => {
         if(token === ''){
             setShowLoading(true)
@@ -22,14 +20,13 @@ export const CreateStepTwo = ({title, token, setToken,newReport, setNewReport}) 
         else{
             getCompanyData(setToken).then(company => setCompany(company))
             setShowLoading(false)
-        }
-        
-    },[])
+        }        
+    },[token, setToken])
+
     const renderLoading = () => {
         return <Loading />
       }
-    const renderCandidates = () => {
-        
+    const renderCandidates = () => {        
         return (
           <div className="home">
             <Search title={title} search={search} setSearch={setSearch} />
@@ -38,7 +35,7 @@ export const CreateStepTwo = ({title, token, setToken,newReport, setNewReport}) 
                 {company.map((company) => {
                   const s = search.trim().toLowerCase();
                   if (s === "" || company.name.toLowerCase().indexOf(s) !== -1)
-                    return (
+                    {return (
                       <CompanyItem
                         selected={newReport.companyId === company.id}
                         selectCompany={selectCompany}
@@ -46,14 +43,14 @@ export const CreateStepTwo = ({title, token, setToken,newReport, setNewReport}) 
                         key={company.id}
                         company={company}
                       />
-                    );
+                    )}
+                  else return null;
                 })}
               </ul>
             </div>
           </div>
         );
       }
-
     return (
        showLoading ? renderLoading() : renderCandidates()
     )
