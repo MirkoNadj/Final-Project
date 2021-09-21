@@ -18,7 +18,10 @@ export const Reports = (setToken) => {
     return (
       <div className="page-reports">
         <Search title={"Reports"} search={search} setSearch={setSearch} />
-        {report.map((user) => {
+        {report.sort((a,b)=>{
+          let c =Date.parse(a.interviewDate);
+          let d =Date.parse(b.interviewDate);
+          return  d-c}).map((user) => {
             const s = search.trim().toLowerCase();
             if (
               s === "" ||
