@@ -1,12 +1,10 @@
 import React, {useState} from "react";
 import { postData } from "../../service/getData";
-
 import './Login.css'
 
 export const Login = ({setToken}) => {
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState(''); 
-
+    const [password, setPassword] = useState('');
     const loginButton= (e) =>{
         e.preventDefault()
         postData(email,password,setToken)      

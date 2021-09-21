@@ -2,14 +2,11 @@ import React from "react";
 import { useHistory } from "react-router";
 import "./CandidateCard.css";
 
-export const CandidateCard = ({name, email, key, users}) => {
-  console.log('users', users)
+export const CandidateCard = ({name, email, users}) => {
     const history = useHistory();
     const viewCandidate = () => {
-      console.log('users' ,users)
-        history.push({pathname: `/candidate/${users.id}`});
+      history.push({pathname: `/candidate/${users.id}`});
     }
-
     return (
       <div className="candidate col-sm-6 col-md-3">
         <div

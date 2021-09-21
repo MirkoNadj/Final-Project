@@ -1,6 +1,6 @@
 export const url = "http://localhost:3333";
 
-export const postData = (user, pass, setToken) => {
+export const postData = (user, pass, setToken, onNotFound) => {
   const data = { email: user, password: pass };
   fetch(`${url}/login`, {
     method: "POST",
@@ -19,17 +19,15 @@ export const postData = (user, pass, setToken) => {
     })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       setToken(data.accessToken);
     })
      .catch((reason) => {
-      handleError(reason, setToken);
+      handleError(reason, setToken, onNotFound);
      });
 };
 
-export function getReportsData(setToken) {
+export function getReportsData(setToken, onNotFound) {
   let token = sessionStorage.getItem("token");
-  console.log("token in get data", token);
   return fetch(`${url}/api/reports`, {
       method: "GET",
       headers: {
@@ -63,13 +61,13 @@ export function getReportsData(setToken) {
       });
     })
     .catch((reason) => {
-      handleError(reason, setToken);
+      handleError(reason, setToken, onNotFound);
     });
 }
 
 //delete report
 
-export function deleteReportsData(setToken, id) {
+export function deleteReportsData(setToken, id, onNotFound) {
   let token = sessionStorage.getItem("token");
   console.log("token in get data", token);
   return fetch(`${url}/api/reports/${id}`, {
@@ -90,15 +88,14 @@ export function deleteReportsData(setToken, id) {
       return response.status;
     })
     .catch((reason) => {
-      handleError(reason, setToken);
+      handleError(reason, setToken, onNotFound);
     });
 }
 
 // All users and single user data
 
-export function getUserData(setToken, id = '') {
+export function getUserData(setToken, id = '', onNotFound) {
   let token = sessionStorage.getItem("token");
-  console.log("token in get data", token);
   return fetch(`${url}/api/candidates/${id}`, {
       method: "GET",
       headers: {
@@ -117,9 +114,7 @@ export function getUserData(setToken, id = '') {
       return response.json();
     })
     .then((users) => {
-      console.log('beforeIF', id)
       if (id === '') {
-      console.log('usersss', users)
       return users.map((user) => {
         return {
           id: user.id,
@@ -133,13 +128,12 @@ export function getUserData(setToken, id = '') {
       return users;
     }})
      .catch((reason) => {
-       handleError(reason, setToken);
+       handleError(reason, setToken, onNotFound);
      });
 }
 
-export function getCompanyData(setToken) {
+export function getCompanyData(setToken, onNotFound) {
   let token = sessionStorage.getItem("token");
-  console.log("token in get data", token);
   return fetch(`${url}/api/companies`, {
       method: "GET",
       headers: {
@@ -167,11 +161,11 @@ export function getCompanyData(setToken) {
       });
     })
     .catch((reason) => {
-      handleError(reason, setToken);
+      handleError(reason, setToken, onNotFound);
     });
 }
 
-export const createNewReport = (newReport, setToken, token, setLoading) => {
+export const createNewReport = (newReport, setToken, token, setLoading, onNotFound) => {
   const interviewDate = new Date(newReport.interviewDate);
   const data = { ...newReport, interviewDate: interviewDate.toString() };
   const requestOptions = {
@@ -201,12 +195,11 @@ export const createNewReport = (newReport, setToken, token, setLoading) => {
     })
     .catch((reason) => {
       setLoading(false);
-      handleError(reason, setToken);
+      handleError(reason, setToken, onNotFound);
     });
 };
 
-
-const handleError = (err, setToken) => {
+const handleError = (err, setToken, onNotFound) => {
   console.error(err);
   if (err?.status === 401) {
     alert("Token has expired. Please login again.");
@@ -214,6 +207,11 @@ const handleError = (err, setToken) => {
   } else if (err?.status === 400) {
     alert("Invalid credentials.");
     setToken("");
+  } else if (err?.status === 404) {
+      if (typeof onNotFound === 'function') {
+        return onNotFound(err)
+      }
+      alert('Resource not found');
   } else {
     alert("Server Error:\n" + err.toString());
   }

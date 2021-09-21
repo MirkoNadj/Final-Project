@@ -1,10 +1,7 @@
 import React from "react";
-import { useLocation } from "react-router";
 import "./Search.css";
 
 export const Search = ({ title, search, setSearch }) => {
-    const location = useLocation()
-    console.log('Search location',location)
     const updateSearch = (e) => {
         setSearch(e.target.value);
     }
