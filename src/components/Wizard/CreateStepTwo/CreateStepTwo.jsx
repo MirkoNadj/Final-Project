@@ -19,7 +19,7 @@ export const CreateStepTwo = ({title, token, setToken,newReport, setNewReport}) 
             setShowLoading(true)
         }
         else{
-            getCompanyData(setToken).then(company => setCompany(company))
+            getCompanyData(setToken,token).then(company => setCompany(company))
             setShowLoading(false)
         }        
     },[token, setToken])

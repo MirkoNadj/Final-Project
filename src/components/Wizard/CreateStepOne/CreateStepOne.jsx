@@ -18,7 +18,7 @@ export const CreateStepOne = ({title, token, setToken, newReport, setNewReport})
         if (token === '') {
             setShowLoading(true)}
         else {
-        getUserData(setToken).then(users => setUsers(users));
+        getUserData(setToken,token).then(users => setUsers(users));
         setShowLoading(false)
         }
     },[token, setToken])

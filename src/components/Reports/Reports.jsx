@@ -3,15 +3,15 @@ import { getReportsData } from "../../service/getData";
 import { ReportItem } from "../ReportItem/ReportItem";
 import { Search } from "../partials/Search/Search";
 
-export const Reports = (setToken) => {
+export const Reports = ({setToken,token}) => {
     const [report, setReport] = useState([])
     const [deleteState, setDeleteState] = useState(false);
     const [search, setSearch] = useState("");
 
     useEffect(() => {
-        getReportsData().then(users => setReport(users))
+        getReportsData(setToken,token).then(users => setReport(users))
         
-    }, [deleteState])
+    }, [deleteState,setToken,token])
 
     return (
       <div className="page-reports">
@@ -42,6 +42,7 @@ export const Reports = (setToken) => {
                     deleteState={deleteState}
                     setToken={setToken}
                     report={user}
+                    token={token}
                   />
                 );
               } else return null;

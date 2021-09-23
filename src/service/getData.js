@@ -26,8 +26,8 @@ export const postData = (user, pass, setToken, onNotFound) => {
      });
 };
 
-export function getReportsData(setToken, onNotFound) {
-  let token = sessionStorage.getItem("token");
+export function getReportsData(setToken,token, onNotFound) {
+  
   return fetch(`${url}/api/reports`, {
       method: "GET",
       headers: {
@@ -67,8 +67,8 @@ export function getReportsData(setToken, onNotFound) {
 
 //delete report
 
-export function deleteReportsData(setToken, id, onNotFound) {
-  let token = sessionStorage.getItem("token");
+export function deleteReportsData(setToken,token, id, onNotFound) {
+  
   console.log("token in get data", token);
   return fetch(`${url}/api/reports/${id}`, {
       method: "DELETE",
@@ -94,8 +94,8 @@ export function deleteReportsData(setToken, id, onNotFound) {
 
 // All users and single user data
 
-export function getUserData(setToken, id = '', onNotFound) {
-  let token = sessionStorage.getItem("token");
+export function getUserData(setToken,token, id = '', onNotFound) {
+  
   return fetch(`${url}/api/candidates/${id}`, {
       method: "GET",
       headers: {
@@ -132,8 +132,8 @@ export function getUserData(setToken, id = '', onNotFound) {
      });
 }
 
-export function getCompanyData(setToken, onNotFound) {
-  let token = sessionStorage.getItem("token");
+export function getCompanyData(setToken,token, onNotFound) {
+  
   return fetch(`${url}/api/companies`, {
       method: "GET",
       headers: {

@@ -4,7 +4,7 @@ import { formatDate } from "../../service/utils"
 import {ReportModal} from "../partials/ReportModal/ReportModal"
 import { deleteReportsData } from "../../service/getData";
 
-export const ReportItem = ({ companyName, candidateName, interviewDate, status, id, report, setDeleteState, deleteState, setToken }) => {
+export const ReportItem = ({ companyName, candidateName, interviewDate, status, id, report, setDeleteState, deleteState, setToken,token }) => {
     const [currentReport, setCurrentReport] = useState(false);
     const openReport = (report) => {
         setCurrentReport(report);
@@ -12,7 +12,7 @@ export const ReportItem = ({ companyName, candidateName, interviewDate, status, 
     const deleteReport = (id) => {
         if(!window.confirm('Are you sure you want to delete report?'))
             return false;
-        deleteReportsData(setToken, id).then(report=> 
+        deleteReportsData(setToken,token, id).then(report=> 
             {
                 if (report === 200) {
                     setDeleteState(!deleteState);
