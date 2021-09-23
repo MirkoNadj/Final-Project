@@ -7,19 +7,19 @@ import { ReportTable } from "../ReportTable/ReportTable";
 import { CandidateInfoItem } from "../CandidateInfoItem/CandidateInfoItem";
 import { getRandomAvatar } from "../../service/utils";
 
-export const Candidate = ({setToken }) => {
+export const Candidate = ({setToken,token }) => {
   const candidateId = useParams();
   const history = useHistory();
   const [data, setData] = useState([]);
   const [candidate, setCandidate] = useState({});
 
   useEffect(() => {
-    getUserData(setToken, candidateId.id, (err) => {
+    getUserData(setToken,token, candidateId.id, (err) => {
       alert("Candidate not found.");
       history.push({pathname: '/'})
     }).then((user) => setCandidate(user));
-    getReportsData(setToken).then((user) => setData(user));
-  },[candidateId.id, history, setToken]);
+    getReportsData(setToken,token).then((user) => setData(user));
+  },[candidateId.id, history, setToken, token]);
 
   return (
     <div className="page page-candidate" style={{ padding: "40px" }}>

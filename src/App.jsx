@@ -37,7 +37,7 @@ useEffect(() => {
         )}
         {token.length > 10 && (
           <Route path="/reports">
-            <Reports setToken={setToken} />
+            <Reports setToken={setToken} token={token} />
           </Route>
         )}
         {token.length > 10 && (

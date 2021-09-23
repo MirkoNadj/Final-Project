@@ -5,8 +5,7 @@ import Loading from '../partials/Loading/Loading'
 import { Search } from '../partials/Search/Search';
 import './Home.css';
 
-export const Home = (setToken) =>{
-    const token = window.sessionStorage.getItem("token")
+export const Home = ({setToken, token}) =>{
     const [users, setUsers] = useState([])
     const [showLoading, setShowLoading] = useState(false);
     const [search, setSearch] = useState('');    
@@ -17,7 +16,7 @@ export const Home = (setToken) =>{
     }
     else {
       setShowLoading(false)
-      getUserData(setToken).then(users => setUsers(users))
+      getUserData(setToken,token).then(users => setUsers(users))
     }      
   },[token, setToken])
 
