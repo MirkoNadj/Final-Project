@@ -1,18 +1,25 @@
 import "./CandidateItem.css";
 
-function CandidateItem({ name, email, candidate, selected, selectCandidate }) {
+function CandidateItem({ name, email, candidate, selected, selectCandidate, avatar }) {
     return (
-        <div className={"candidate-item col-6 " + (selected ? 'active bg-primary' : '')} onClick={() => selectCandidate(candidate)}>
-            <div className="row">
-                <div className="col-3">
-                    <img src="./default-user.jpg" alt="" />
-                </div>
-                <div className="col-9">
-                    <strong>{name}</strong>
-                    <small>{email}</small>
-                </div>
+      <div className="col-md-6 col-sm-12">
+        <div
+          className={
+            "candidate-item " + (selected ? "active bg-primary" : "")
+          }
+          onClick={() => selectCandidate(candidate)}
+        >
+          <div className="row">
+            <div className="col-3">
+              <img src={avatar} alt="" />
             </div>
+            <div className="col-9">
+              <strong>{name}</strong>
+              <small>{email}</small>
+            </div>
+          </div>
         </div>
+      </div>
     );
 }
 

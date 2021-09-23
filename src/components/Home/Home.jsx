@@ -29,7 +29,7 @@ export const Home = (setToken) =>{
     
     return <div className="home">
             <Search title={"Candidates"} search={search} setSearch={setSearch} />
-            <div className="container-fluid">
+            <div className="container">
               <div className="row candidates">
                 {users.map((user) => {
                   const s = search.trim().toLowerCase();

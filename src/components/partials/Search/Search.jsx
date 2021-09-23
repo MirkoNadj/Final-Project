@@ -7,16 +7,18 @@ export const Search = ({ title, search, setSearch }) => {
     }
     return (
       <nav className="searchbar navbar navbar-expand-lg navbar-light bg-light">
-        <span className="navbar-brand">{title}</span>
-        <form className="form-inline my-lg-0">
-          <input
-            className="form-control mr-sm-2"
-            type="search"
-            placeholder="Search..."
-            onChange={updateSearch}
-            value={search}
-          />
-        </form>
+        <div className="container">
+          <span className="navbar-brand">{title}</span>
+          <form className="form-inline my-lg-0">
+            <input
+              className="form-control mr-sm-2"
+              type="search"
+              placeholder="Search..."
+              onChange={updateSearch}
+              value={search}
+            />
+          </form>
+        </div>
       </nav>
     );
 };

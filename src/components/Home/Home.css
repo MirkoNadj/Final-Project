@@ -1,6 +1,5 @@
 .candidates {
     align-content: stretch;
-  overflow: hidden; 
 }
 .candidates [class*="col-"]{
   display: flex;

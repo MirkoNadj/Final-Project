@@ -42,13 +42,13 @@ export const ReportItem = ({ companyName, candidateName, interviewDate, status, 
                 </div>
                 <div className="col-sm-6 col-md-2">
                     <button
-                        className="btn btn-light"
+                        className="btn btn-primary"
                         onClick={() => openReport(report)}
                     >
                         <i className="fa fa-eye"></i>
                     </button>
                     <button
-                        className="btn btn-light"
+                        className="btn btn-danger"
                         onClick={() => deleteReport(id)}
                     >
                         <i className="fas fa-minus-circle"></i>

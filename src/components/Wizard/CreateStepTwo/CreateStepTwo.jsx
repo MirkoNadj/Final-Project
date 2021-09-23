@@ -3,6 +3,7 @@ import { getCompanyData } from "../../../service/getData";
 import Loading from '../../partials/Loading/Loading'
 import { Search } from '../../partials/Search/Search';
 import { CompanyItem } from '../CompanyItem/CompanyItem';
+import "./CreateStepTwo.css"
 
 export const CreateStepTwo = ({title, token, setToken,newReport, setNewReport}) => {
     const [company, setCompany] = useState([])
