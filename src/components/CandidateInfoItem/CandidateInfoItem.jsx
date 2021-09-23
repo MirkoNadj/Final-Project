@@ -7,7 +7,7 @@ export const CandidateInfoItem = ({ className, label, value }) => {
                 {label}
             </div>
             <div className="candidate-info-value">
-                {value}
+                {value ? value : <div className="candidate-info-loading">...</div>}
             </div>
         </div>
     );

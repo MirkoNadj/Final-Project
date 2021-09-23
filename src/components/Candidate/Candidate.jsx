@@ -5,6 +5,7 @@ import { formatDate } from "../../service/utils";
 import { getReportsData, getUserData } from "../../service/getData";
 import { ReportTable } from "../ReportTable/ReportTable";
 import { CandidateInfoItem } from "../CandidateInfoItem/CandidateInfoItem";
+import { getRandomAvatar } from "../../service/utils";
 
 export const Candidate = ({setToken }) => {
   const candidateId = useParams();
@@ -24,25 +25,30 @@ export const Candidate = ({setToken }) => {
     <div className="page page-candidate" style={{ padding: "40px" }}>
       <div className="container candidate-top">
         <div className="row">
-          <div className="col-sm-12 col-md-3">
-            <img
-              src="../default-user.jpg"
-              className="candidate-image"
-              alt="candidate"
-            />
+          <div className="col-sm-12 col-md-3 candidate-image-wrapper">
+            <div className="p-3">
+              <img
+                src={getRandomAvatar()}
+                className="candidate-image"
+                alt="candidate"
+              />
+            </div>
           </div>
           <div className="col-sm-12 col-md-5">
             <CandidateInfoItem label="Name:" value={candidate.name} />
-            <CandidateInfoItem label="E-mail:" value={candidate.email} />
+            <CandidateInfoItem label="E-mail:" value={candidate.email?.toLowerCase()} />
           </div>
           <div className="col-sm-12 col-md-4">
-            <CandidateInfoItem label="Date of Birth:" value={formatDate(candidate.birthday)} />
+            <CandidateInfoItem
+              label="Date of Birth:"
+              value={formatDate(candidate.birthday)}
+            />
             <CandidateInfoItem label="Education:" value={candidate.education} />
           </div>
         </div>
       </div>
       <div className="candidate-reports">
-        <h4>Reports</h4>
+        <h3 className="mb-4">Reports</h3>
         <ReportTable
           report={data}
           candidateId={candidate.id}

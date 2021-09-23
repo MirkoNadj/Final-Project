@@ -1,6 +1,7 @@
 import React from "react";
 import { CandidateInfoItem } from "../../CandidateInfoItem/CandidateInfoItem";
 import { formatDate } from "../../../service/utils";
+import "./ReportModal.css"
 
 export const ReportModal = ({ currentReport, setCurrentReport }) => {
   const closeReport = () => {
@@ -48,11 +49,16 @@ export const ReportModal = ({ currentReport, setCurrentReport }) => {
                     value={currentReport.status}
                   />
                 </div>
-                <div className="col-sm-12 col-md-8">
+                <div className="col-sm-12 col-md-8 notes-wrapper">
                   <CandidateInfoItem
                     className="candidate-notes"
                     label="Notes"
                     value={currentReport.note}
+                  />
+                  <img
+                    src={process.env.PUBLIC_URL + "/notes-bg.svg"}
+                    alt=""
+                    className="notes-bg"
                   />
                 </div>
               </div>

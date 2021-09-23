@@ -88,7 +88,7 @@ export const Create = ({ setToken, token }) => {
                 );
               })}
             </ul>
-            <ul className="step-breakdown list-group mt-3">
+            <ul className="step-breakdown list-group my-3">
               {newReport.candidateId > 0 && step > 1 && (
                 <li className="list-group-item">
                   {newReport.candidateName}

@@ -13,6 +13,9 @@
 .report-item .row > div:not(:last-of-type){
     border-right: 1px solid #ddd;
 }
+.report-item .btn {
+    margin-right: 5px;
+}
 
 @media screen and (max-width: 767px) {
     .report-item .row > div:not(:last-of-type) {

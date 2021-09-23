@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ReportModal } from "../partials/ReportModal/ReportModal";
+import "./ReportsTable.css";
 
 export const ReportTable = ({report, candidateId, formatDate}) => {
     const [currentReport, setCurrentReport] = useState(false);
@@ -15,7 +16,7 @@ export const ReportTable = ({report, candidateId, formatDate}) => {
     
     return (
       <div className="reports">
-        <table className="table">
+        <table className="table table-responsive-sm">
           <thead>
             <tr>
               <th scope="col">Company</th>
@@ -34,7 +35,7 @@ export const ReportTable = ({report, candidateId, formatDate}) => {
                 <td>{report.status}</td>
                 <td className="text-right">
                   <button
-                    className="btn btn-light"
+                    className="btn btn-primary"
                     onClick={() => openReport(report)}
                   >
                     <i className="fa fa-eye"></i>

@@ -10,21 +10,41 @@ export const Login = ({setToken}) => {
         postData(email,password,setToken)      
     }
 
-    return(
-      <div className="login-form mt-5  d-flex justify-content-center align-items-center  ">
-      
-      <form className='container row'  onSubmit={loginButton} >
-          <div className="mb-2 col-8"> 
-            <input type="email" className="form-control mb-2" value={email} onChange={(e)=>setEmail(e.target.value)} placeholder='email'/>
-  
-            <div className="mb-2">
-   
-              <input type="password" className="form-control" value={password} placeholder='password'onChange={(e)=>setPassword(e.target.value)}/>
-            </div>
-            <button type="submit" className="btn btn-primary btn-block">Submit</button>
+    return (
+      <div className="row login-wrapper">
+        <div className="col-sm-12 col-lg-6">
+          <img src="./login-bg.svg" alt="" className="login-bg" />
+        </div>
+        <div className="col-sm-12 col-lg-6">
+          <div className="login-form mt-5  d-flex justify-content-center align-items-center  ">
+            <form className="container row" onSubmit={loginButton}>
+              <div className="mb-2 col-12">
+                <input
+                  type="email"
+                  className="form-control mb-2"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="email"
+                />
+                </div>
+
+                <div className="mb-2 col-12">
+                  <input
+                    type="password"
+                    className="form-control"
+                    value={password}
+                    placeholder="password"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+                <div className="mt-2 col-12">
+                  <button type="submit" className="btn btn-primary btn-block">
+                    Submit
+                  </button>
+                </div>
+            </form>
           </div>
-        </form>
-        
-    </div>
-    )
+        </div>
+      </div>
+    );
 }
