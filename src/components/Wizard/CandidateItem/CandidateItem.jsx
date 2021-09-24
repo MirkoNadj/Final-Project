@@ -1,5 +1,7 @@
 import "./CandidateItem.css";
 
+// candidate item for step one in wizard
+
 function CandidateItem({ name, email, candidate, selected, selectCandidate, avatar }) {
     return (
       <div className="col-md-6 col-sm-12">

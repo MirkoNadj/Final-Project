@@ -7,18 +7,20 @@ import { ReportTable } from "../ReportTable/ReportTable";
 import { CandidateInfoItem } from "../CandidateInfoItem/CandidateInfoItem";
 import { getRandomAvatar } from "../../service/utils";
 
+// chossen (clicked on) candidate info small info items and with report table
+
 export const Candidate = ({setToken,token }) => {
   const candidateId = useParams();
   const history = useHistory();
-  const [data, setData] = useState([]);
-  const [candidate, setCandidate] = useState({});
+  const [reportData, setReportData] = useState([]);               // hook for report table data            
+  const [candidate, setCandidate] = useState({});                 // hook for candidate data
 
   useEffect(() => {
-    getUserData(setToken,token, candidateId.id, (err) => {
+    getUserData(setToken,token, candidateId.id, (err) => {            // getting data for candidate
       alert("Candidate not found.");
       history.push({pathname: '/'})
     }).then((user) => setCandidate(user));
-    getReportsData(setToken,token).then((user) => setData(user));
+    getReportsData(setToken,token).then((userReport) => setReportData(userReport));     // getting data for report table
   },[candidateId.id, history, setToken, token]);
 
   return (
@@ -50,7 +52,7 @@ export const Candidate = ({setToken,token }) => {
       <div className="candidate-reports">
         <h3 className="mb-4">Reports</h3>
         <ReportTable
-          report={data}
+          report={reportData}
           candidateId={candidate.id}
           formatDate={formatDate}
         />

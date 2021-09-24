@@ -7,6 +7,7 @@ import { Candidate } from "../../../entities/candidate";
 import { createNewReport } from "../../../service/getData";
 import { useHistory } from "react-router-dom"
 
+// creation of a new report thru three steps (Wizard)
 
 export const Create = ({ setToken, token }) => {
   let inititalCandidate = new Candidate();

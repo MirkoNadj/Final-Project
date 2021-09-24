@@ -3,6 +3,8 @@ import { getReportsData } from "../../service/getData";
 import { ReportItem } from "../ReportItem/ReportItem";
 import { Search } from "../partials/Search/Search";
 
+// all reports list page with listed report items and a search input
+
 export const Reports = ({setToken,token}) => {
     const [report, setReport] = useState([])
     const [deleteState, setDeleteState] = useState(false);

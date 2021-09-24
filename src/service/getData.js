@@ -1,5 +1,7 @@
 export const url = "http://localhost:3333";
 
+// function for posting username/password and receiving the access token from the server
+
 export const postData = (user, pass, setToken, onNotFound) => {
   const data = { email: user, password: pass };
   fetch(`${url}/login`, {
@@ -25,6 +27,8 @@ export const postData = (user, pass, setToken, onNotFound) => {
       handleError(reason, setToken, onNotFound);
      });
 };
+
+// function for getting the reports from the server
 
 export function getReportsData(setToken,token, onNotFound) {
   
@@ -69,7 +73,6 @@ export function getReportsData(setToken,token, onNotFound) {
 
 export function deleteReportsData(setToken,token, id, onNotFound) {
   
-  console.log("token in get data", token);
   return fetch(`${url}/api/reports/${id}`, {
       method: "DELETE",
       headers: {
@@ -92,7 +95,7 @@ export function deleteReportsData(setToken,token, id, onNotFound) {
     });
 }
 
-// All users and single user data
+// function for getting data about candidates from the server
 
 export function getUserData(setToken,token, id = '', onNotFound) {
   
@@ -132,6 +135,8 @@ export function getUserData(setToken,token, id = '', onNotFound) {
      });
 }
 
+// function for getting data about companies from the server
+
 export function getCompanyData(setToken,token, onNotFound) {
   
   return fetch(`${url}/api/companies`, {
@@ -164,6 +169,8 @@ export function getCompanyData(setToken,token, onNotFound) {
       handleError(reason, setToken, onNotFound);
     });
 }
+
+// function for posting data about newly created report to the server
 
 export const createNewReport = (newReport, setToken, token, setLoading, onNotFound) => {
   const interviewDate = new Date(newReport.interviewDate);
@@ -198,6 +205,8 @@ export const createNewReport = (newReport, setToken, token, setLoading, onNotFou
       handleError(reason, setToken, onNotFound);
     });
 };
+
+// function for error handling
 
 const handleError = (err, setToken, onNotFound) => {
   console.error(err);
