@@ -3,13 +3,13 @@ export const url = "http://localhost:3333";
 // function for posting username/password and receiving the access token from the server
 
 export const postData = (user, pass, setToken, onNotFound) => {
-  const data = { email: user, password: pass };
+  const userData = { email: user, password: pass };
   fetch(`${url}/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(userData),
   })
     .then((response) => {
       if (!response.ok) {
@@ -95,7 +95,7 @@ export function deleteReportsData(setToken,token, id, onNotFound) {
     });
 }
 
-// function for getting data about candidates from the server
+// function for getting data about candidates from the server, or single candidate if id is not empty string
 
 export function getUserData(setToken,token, id = '', onNotFound) {
   
@@ -117,7 +117,7 @@ export function getUserData(setToken,token, id = '', onNotFound) {
       return response.json();
     })
     .then((users) => {
-      if (id === '') {
+      if (id === '') {                          // checking if id is empty string
       return users.map((user) => {
         return {
           id: user.id,
@@ -128,7 +128,7 @@ export function getUserData(setToken,token, id = '', onNotFound) {
         };
       });
     }else {
-      return users;
+      return users;                           // id is not empty then return single candidate by id
     }})
      .catch((reason) => {
        handleError(reason, setToken, onNotFound);
@@ -209,7 +209,6 @@ export const createNewReport = (newReport, setToken, token, setLoading, onNotFou
 // function for error handling
 
 const handleError = (err, setToken, onNotFound) => {
-  console.error(err);
   if (err?.status === 401) {
     alert("Token has expired. Please login again.");
     setToken("");
@@ -218,7 +217,7 @@ const handleError = (err, setToken, onNotFound) => {
     setToken("");
   } else if (err?.status === 404) {
       if (typeof onNotFound === 'function') {
-        return onNotFound(err)
+        return onNotFound()
       }
       alert('Resource not found');
   } else {

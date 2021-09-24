@@ -10,10 +10,10 @@ import { Reports } from './components/Reports/Reports';
 import { Create} from './components/Wizard/Create/Create'
 
 function App() {  
-  const [token, setToken] = useState(window.sessionStorage.getItem("token") !== null ? window.sessionStorage.getItem("token") : "");
+  const [token, setToken] = useState(window.localStorage.getItem("token") !== null ? window.localStorage.getItem("token") : "");
 
-useEffect(() => {
-  window.sessionStorage.setItem("token", token);
+useEffect(() => {                
+  window.localStorage.setItem("token", token);
   }, [token]);
   
   return (

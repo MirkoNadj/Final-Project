@@ -8,6 +8,7 @@ export const Header = ({setToken, token}) => {
   const location = useLocation();
   const logout = () => {            // helper function for logout button
     setToken("");
+    localStorage.clear()
   };
     return (
       <nav className="navbar navbar-expand-lg navbar-dark main-header">

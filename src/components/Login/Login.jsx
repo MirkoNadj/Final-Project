@@ -13,6 +13,7 @@ export const Login = ({setToken}) => {
     }
 
     return (
+      
       <div className="row login-wrapper">
         <div className="col-sm-12 col-lg-6">
           <img src="./login-bg.svg" alt="" className="login-bg" />
