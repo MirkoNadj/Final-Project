@@ -4,12 +4,14 @@ import { formatDate } from "../../service/utils"
 import {ReportModal} from "../partials/ReportModal/ReportModal"
 import { deleteReportsData } from "../../service/getData";
 
+// single report item for the all reports list, with buttons for opening a modal and for deleting
+
 export const ReportItem = ({ companyName, candidateName, interviewDate, status, id, report, setDeleteState, deleteState, setToken,token }) => {
     const [currentReport, setCurrentReport] = useState(false);
-    const openReport = (report) => {
+    const openReport = (report) => {                            // helper function for opening a report on click
         setCurrentReport(report);
     }
-    const deleteReport = (id) => {
+    const deleteReport = (id) => {                              // helper function for deleting a report on click
         if(!window.confirm('Are you sure you want to delete report?'))
             return false;
         deleteReportsData(setToken,token, id).then(report=> 

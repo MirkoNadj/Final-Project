@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { ReportModal } from "../partials/ReportModal/ReportModal";
 import "./ReportsTable.css";
 
+// report table under chossen candidate info
+
 export const ReportTable = ({report, candidateId, formatDate}) => {
     const [currentReport, setCurrentReport] = useState(false);
-    const openReport = (report) => {
+    const openReport = (report) => {                           // helper function for opening a single report onClick
         setCurrentReport(report);
     }
-    let filteredReport = [];
+    let filteredReport = [];                                   // creating/filtering a report array for a chossen candidate
     report.forEach(elem =>{
         if (elem.candidateId === candidateId){
              filteredReport.push(elem)

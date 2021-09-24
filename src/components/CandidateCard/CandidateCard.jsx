@@ -3,9 +3,11 @@ import { useHistory } from "react-router";
 import "./CandidateCard.css";
 import { getRandomAvatar } from "../../service/utils"
 
+// single candidate card for displaying in Home
+
 export const CandidateCard = ({name, email, users}) => {
     const history = useHistory();
-    const viewCandidate = () => {
+    const viewCandidate = () => {                       // helper function for clicking on card, redirecting to candidate info 
       history.push({pathname: `/candidate/${users.id}`});
     }
     return (

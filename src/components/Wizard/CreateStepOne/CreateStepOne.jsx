@@ -4,8 +4,10 @@ import Loading from "../../partials/Loading/Loading"
 import {Search} from "../../partials/Search/Search"
 import CandidateItem from "../CandidateItem/CandidateItem"
 import { getRandomAvatar } from "../../../service/utils";
-
 var avatars = {};
+
+// Create report wizard STEP ONE with list of candidates and search input (similar to Home)
+
 export const CreateStepOne = ({title, token, setToken, newReport, setNewReport}) => {
     const [users, setUsers] = useState([])
     const [search, setSearch] = useState('');

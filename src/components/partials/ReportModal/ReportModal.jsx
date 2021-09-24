@@ -3,8 +3,10 @@ import { CandidateInfoItem } from "../../CandidateInfoItem/CandidateInfoItem";
 import { formatDate } from "../../../service/utils";
 import "./ReportModal.css"
 
+// Modal for crruent report
+
 export const ReportModal = ({ currentReport, setCurrentReport }) => {
-  const closeReport = () => {
+  const closeReport = () => {                                         // helper function for closing on click
       setCurrentReport(false);
   }
   return (

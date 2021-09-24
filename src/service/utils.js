@@ -1,3 +1,5 @@
+// function for formating dates of interviews and candidate birthdays
+
 export const formatDate = (bDay) => {
   let date = new Date(bDay);
   if(isNaN(date))
@@ -9,6 +11,9 @@ export const formatDate = (bDay) => {
   let year = date.getFullYear();
   return `${day}.${month}.${year}.`;
 };
+
+// function for generating random picture on a candidate card 
+
 export const getRandomAvatar = () => {
   const rnd = Math.floor(Math.random() * 10);
   if(rnd >= 5)

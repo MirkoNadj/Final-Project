@@ -1,5 +1,7 @@
+// Create report wizard STEP THREE
 
 export const CreateStepThree = ({ title, newReport, setNewReport, statuses, phases }) => {
+    // functions for updating new report state from inputs, onChange
     const updateStatus = (e) => {
         setNewReport({ ...newReport, status: e.target.value });
     };
@@ -13,7 +15,7 @@ export const CreateStepThree = ({ title, newReport, setNewReport, statuses, phas
         setNewReport({ ...newReport, note: e.target.value });
     };
 
-  const today = () => {
+  const today = () => {               //current date for max date input
     const today = new Date();
     let dd = today.getDate();
     let mm = today.getMonth() + 1;
@@ -26,7 +28,7 @@ export const CreateStepThree = ({ title, newReport, setNewReport, statuses, phas
     return `${yyyy}-${mm}-${dd}`;
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = (e) => {           // helper function for submit button
     e.preventDefault();
     return false;
   };

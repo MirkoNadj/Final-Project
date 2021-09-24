@@ -2,9 +2,11 @@ import React from 'react';
 import { Link, useLocation } from "react-router-dom";
 import './Header.css';
 
+// header
+
 export const Header = ({setToken, token}) => {
   const location = useLocation();
-  const logout = () => {
+  const logout = () => {            // helper function for logout button
     setToken("");
   };
     return (

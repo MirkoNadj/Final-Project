@@ -2,12 +2,14 @@ import React, {useState} from "react";
 import { postData } from "../../service/getData";
 import './Login.css'
 
+// login form (inputs and submit button)
+
 export const Login = ({setToken}) => {
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState('');       
     const [password, setPassword] = useState('');
-    const loginButton= (e) =>{
+    const loginButton= (e) =>{                    // helper function for submit/onclick button
         e.preventDefault()
-        postData(email,password,setToken)      
+        postData(email,password,setToken)         
     }
 
     return (

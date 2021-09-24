@@ -1,3 +1,4 @@
+// company item for step two in wizard
 
 export const CompanyItem = ({selected, selectCompany,company}) => {
 

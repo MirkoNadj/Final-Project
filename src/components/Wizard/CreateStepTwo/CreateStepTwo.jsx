@@ -5,6 +5,8 @@ import { Search } from '../../partials/Search/Search';
 import { CompanyItem } from '../CompanyItem/CompanyItem';
 import "./CreateStepTwo.css"
 
+// Create report wizard STEP TWO with a list of companies and search input
+
 export const CreateStepTwo = ({title, token, setToken,newReport, setNewReport}) => {
     const [company, setCompany] = useState([])
     const [showLoading, setShowLoading] = useState(false);

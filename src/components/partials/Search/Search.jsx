@@ -1,8 +1,10 @@
 import React from "react";
 import "./Search.css";
 
+// search component for filtering candidates by characters in name and e-mail
+
 export const Search = ({ title, search, setSearch }) => {
-    const updateSearch = (e) => {
+    const updateSearch = (e) => {                         //helper function for onChange input
         setSearch(e.target.value);
     }
     return (

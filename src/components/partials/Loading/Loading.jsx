@@ -1,6 +1,7 @@
 import React from 'react';
 import './Loading.css'
 
+// loading animation
 
 const Loading = () => {
     console.log('loading....')
