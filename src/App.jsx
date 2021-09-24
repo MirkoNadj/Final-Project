@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import './App.css';
-import {Header} from './components/Header';
-import {Footer} from './components/Footer';
-import { Home } from './components/Home';
-import {Login} from './components/Login';
-import {Candidate} from './components/Candidate';
-
+import {Header} from './components/partials/Header/Header';
+import {Footer} from './components/partials/Footer/Footer';
+import { Home } from './components/Home/Home';
+import {Login} from './components/Login/Login';
+import {Candidate} from './components/Candidate/Candidate';
+import { Reports } from './components/Reports/Reports';
+import { Create} from './components/Wizard/Create/Create'
 
 function App() {  
   const [token, setToken] = useState(window.sessionStorage.getItem("token") !== null ? window.sessionStorage.getItem("token") : "");
 
 useEffect(() => {
   window.sessionStorage.setItem("token", token);
-  //console.log('token hook' ,token)
   }, [token]);
-
-
+  
   return (
     <Router>
       <div className="App">
@@ -32,8 +31,18 @@ useEffect(() => {
         </Route>
 
         {token.length > 10 && (
-          <Route path="/candidate">
+          <Route exact path="/candidate/:id">
             <Candidate setToken={setToken} token={token} />
+          </Route>
+        )}
+        {token.length > 10 && (
+          <Route path="/reports">
+            <Reports setToken={setToken} token={token} />
+          </Route>
+        )}
+        {token.length > 10 && (
+          <Route path="/create">
+            <Create setToken={setToken} token={token} />
           </Route>
         )}
         <Route render={() => <Redirect to="/" />} />
